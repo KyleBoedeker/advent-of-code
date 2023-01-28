@@ -5,21 +5,21 @@ use std::fs;
 struct ParseDBEntryError;
 
 #[derive(Debug, PartialEq)]
-struct DBEntry<'a> {
-    password: &'a str,
+struct DBEntry {
+    password: String,
     letter: char,
     n1: usize,
     n2: usize,
 }
 
-impl<'a> DBEntry<'a> {
-    fn from_str(s: &'a str) -> Result<Self, ParseDBEntryError> {
+impl DBEntry {
+    fn from_str(s: &str) -> Result<Self, ParseDBEntryError> {
         let v: Vec<&str> = s.split(['-', ' ']).collect();
 
         let n1 = v[0].parse().map_err(|_| ParseDBEntryError)?;
         let n2 = v[1].parse().map_err(|_| ParseDBEntryError)?;
         let letter = v[2].chars().next().ok_or(ParseDBEntryError)?;
-        let password = v[3];
+        let password = String::from(v[3]);
 
         return Ok(DBEntry {
             password,
@@ -43,7 +43,7 @@ impl<'a> DBEntry<'a> {
     }
 }
 
-impl fmt::Display for DBEntry<'_> {
+impl fmt::Display for DBEntry {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         return write!(
             f,
@@ -90,7 +90,7 @@ mod tests {
                 letter: 'a',
                 n1: 1,
                 n2: 3,
-                password: "abcde"
+                password: String::from("abcde")
             })
         );
     }
