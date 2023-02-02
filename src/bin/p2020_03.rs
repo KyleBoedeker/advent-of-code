@@ -15,9 +15,9 @@ where
 #[derive(Debug)]
 struct TobogganTrip {
     x_vel: usize,
-    y_vel: usize, // 1 = every row, 2 = every other row, etc.
-    x_pos: usize, // used for indexing rows
-    y_pos: usize, // used for skipping rows
+    y_vel: usize,              // 1 = every row, 2 = every other row, etc.
+    x_pos: usize,              // used for indexing rows
+    y_pos: usize,              // used for skipping rows
     first_update_called: bool, // used to consume first row
     trees_hit: usize,
 }
@@ -35,7 +35,6 @@ impl TobogganTrip {
     }
 
     fn update(&mut self, forest_row: &str) {
-
         let mut skip_row = false;
 
         // move to new position (don't move if we're on the first row)
@@ -61,7 +60,6 @@ impl TobogganTrip {
                 self.trees_hit += 1;
             }
         }
-
     }
 }
 
@@ -131,16 +129,3 @@ mod tests {
         )
     }
 }
-
-//
-// ..##.......
-// #...#...#..
-// .#....#..#.
-// ..#.#...#.#
-// .#...##..#.
-// ..#.##.....
-// .#.#.#....#
-// .#........#
-// #.##...#...
-// #...##....#
-// .#..#...#.#
