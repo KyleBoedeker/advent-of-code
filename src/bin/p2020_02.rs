@@ -63,7 +63,10 @@ fn main() {
         .filter(|db| db.is_valid_password_by_old_policy())
         .count();
 
-    println!("# of valid passwords (by old policy): {}", valid_password_count);
+    println!(
+        "# of valid passwords (by old policy): {}",
+        valid_password_count
+    );
 
     // parse lines as database entries and count the # of valid ones
     let valid_password_count = buffer
@@ -73,7 +76,6 @@ fn main() {
         .count();
 
     println!("# of valid passwords: {}", valid_password_count);
-
 }
 
 #[cfg(test)]
