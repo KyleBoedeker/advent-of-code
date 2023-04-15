@@ -58,11 +58,11 @@ impl ToString for SNAFU {
             base /= 5;
 
             let digit_selecter = [
-                (acc - 2 * base - self.value).abs(),
-                (acc - base - self.value).abs(),
-                (acc - self.value).abs(),
-                (acc + base - self.value).abs(),
-                (acc + 2 * base - self.value).abs(),
+                (acc - 2 * base).abs_diff(self.value),
+                (acc - base).abs_diff(self.value),
+                (acc).abs_diff(self.value),
+                (acc + 1 * base).abs_diff(self.value),
+                (acc + 2 * base).abs_diff(self.value),
             ];
 
             let min = digit_selecter.iter().min().unwrap();
